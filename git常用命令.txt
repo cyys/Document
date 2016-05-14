@@ -1,0 +1,47 @@
+初创建本地仓库(repository)，将会在文件夹下创建一个 .git 文件夹
+，.git 文件夹里存储了所有的版本信息、标记等内容
+git init
+
+
+把本地仓库和远程仓库关联起来。如果不执行这个命令的话，
+每次 push 的时候都需要指定远程服务器的地址
+git remote add origin git@github.com:ower/test.git
+
+
+从本地仓库增删，结果将会保存到本机的缓存里面
+git add
+git rm
+
+提交，把本机缓存中的内容提交到本机的 HEAD 里面
+git commit -m "注释"
+
+
+要将新创建的本地仓库同步到远程，受限执行该命令
+git pull --rebase origin master
+
+
+更新到远程
+git push -u origin master
+
+
+查看状态
+git status    
+
+
+配置用户名，上传本地 repository 到服务器上的时候，
+在 Github 上会显示这里配置的上传者信息
+git config --global user.name xxx     
+
+
+配置邮箱
+git config --global user.email xxx 
+
+
+查看配置列表    
+git config --list     
+
+
+====================================================================
+
+使用Git Bash生成新的ssh key,进入到用户主目录：
+ssh-keygen -t rsa -C xxxxxx@163.com    
