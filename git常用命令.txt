@@ -3,25 +3,13 @@
 git init
 
 
-把本地仓库和远程仓库关联起来。如果不执行这个命令的话，
-每次 push 的时候都需要指定远程服务器的地址
-git remote add origin git@github.com:ower/test.git
-
-
 从本地仓库增删，结果将会保存到本机的缓存里面
 git add
 git rm
 
+
 提交，把本机缓存中的内容提交到本机的 HEAD 里面
-git commit -m "注释"
-
-
-要将新创建的本地仓库同步到远程，受限执行该命令
-git pull --rebase origin master
-
-
-更新到远程
-git push -u origin master
+git commit -m 注释
 
 
 查看状态
@@ -38,10 +26,116 @@ git config --global user.email xxx
 
 
 查看配置列表    
-git config --list     
+git config --list  
 
 
-====================================================================
+在为commint之前使用,撤销修改
+git checkout -- fileName 
+
+
+==============远程同步============================
+
+把本地仓库和远程仓库关联起来。如果不执行这个命令的话，
+每次 push 的时候都需要指定远程服务器的地址
+git remote add origin git@github.com:ower/test.git
+
+
+要将新创建的本地仓库同步到远程，受限执行该命令
+git pull --rebase origin master
+
+
+更新到远程（第一次使用-u，后面可以不使用了）
+git push -u origin master
+
+===============分支==========================
+
+
+创建并切换分支
+git checkout -b brachName
+
+
+查看当前的分支
+git branch
+  
+  
+切换分支
+git checkout branchName
+
+
+在当前分支下合并分支branchName
+git merge branchName 
+
+
+删除branchName分支
+git branch -d branchName
+
+
+创建分支branchName
+git branch branchName
+
+
+通常合并分支时，git一般使用”Fast forward”模式，
+在这种模式下，删除分支后，会丢掉分支信息，
+现在我们来使用带参数 --no-ff来禁用”Fast forward”模式。
+git merge --no-ff -m '注释' branchName
+
+
+=============隐藏现场============================
+
+
+隐藏当前工作现场(隐藏当前修改的部分)。
+git stash
+
+
+查看隐藏工作现场修改的日志
+git stash list
+
+
+恢复工作现场
+git stash apply
+
+
+删除stash内容
+git stash drop
+
+
+恢复并删除stash
+git stash pop
+
+=============分支同步================
+
+将分支与远程同步
+git push origin branchName
+
+
+创建远程origin的branchName到本地
+git checkout  –b branchName origin/branchName
+
+
+先将远程分支同步到本地分支
+git pull --rebase origin branchName
+
+
+继续远程分支同步到本地分支
+git rebase --continue
+
+
+略过远程分支同步到本地分支
+git rebase --skip
+
+
+将本地分支与远程分支连接
+git branch --set-upstream branchName origin/branchName
+
+
+删除远程分支
+git push origin --delete branchName
+
+
+查看远程分支
+git branch -a
+
+===================远程仓库同步的ssh key=================================================
 
 使用Git Bash生成新的ssh key,进入到用户主目录：
 ssh-keygen -t rsa -C xxxxxx@163.com    
